@@ -1,9 +1,9 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
 import sys
 import smallsmilhandler
+import json
 from xml.sax import make_parser
 from xml.sax.handler import ContentHandler
+
 
 if __name__ == "__main__":
     try:
@@ -13,6 +13,10 @@ if __name__ == "__main__":
         parser.parse(open(sys.argv[1]))
         listafinal = cHandler.get_tags()
         p = ''
+
+        archivojson = sys.argv[1].replace('.smil', '.json')
+        with open(archivojson, 'w') as jsonfile:
+            json.dump(listafinal, jsonfile, indent=1)
         for frase in listafinal:
             for clave, valor in frase.items():
                 if clave == 'etiqueta':
