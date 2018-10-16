@@ -1,5 +1,3 @@
-#!/usr/bin/python3
-# -*- coding: utf-8 -*-
 import sys
 import smallsmilhandler
 import json
@@ -25,7 +23,9 @@ if __name__ == "__main__":
                 if clave == 'src':
                     url = valor
                     if url.startswith('http'):
-                        urllib.request.urlretrieve(url)
+                        archivo = url.split('/')[-1]
+                        urllib.request.urlretrieve(url, archivo)
+                        valor = archivo
                 if clave == 'etiqueta':
                     p = valor
                 if valor != "" and clave != 'etiqueta':
