@@ -19,15 +19,15 @@ class KaraokeLocal:
             self.listafinal = cHandler.get_tags()
 
     def __str__(self):
+        p = ''
         for frase in self.listafinal:
             for clave, valor in frase.items():
                 if clave == 'etiqueta':
-                    p = valor
-                if clave == 'src':
-                    valor = valor.split('/')[-1]
+                    p += valor
                 if valor != "" and clave != 'etiqueta':
-                    p += '\t' + clave + "=" + "'" + valor + "'"
-            print(p)
+                    p += '\t' + clave + " = " + "'" + valor + "'"
+            p += '\n'
+        return p
 
     def to_json(self, teclado, archivojson=''):
         if archivojson == '':
@@ -42,6 +42,7 @@ class KaraokeLocal:
                     url = valor
                     if url.startswith('http'):
                         archivo = url.split('/')[-1]
+                        frase['src'] = archivo
                         urllib.request.urlretrieve(url, archivo)
 
 if __name__ == "__main__":
@@ -50,7 +51,8 @@ if __name__ == "__main__":
         karaoke = KaraokeLocal(teclado)
     except FileNotFoundError:
         sys.exit("Usage: python3 karaoke.py file.smil.")
+    print(karaoke)
     karaoke.to_json(teclado)
     karaoke.do_local()
     karaoke.to_json(teclado, 'local.json')
-    karaoke.__str__()
+    print(karaoke)

@@ -28,7 +28,9 @@ class SmallSMILHandler(ContentHandler):
             self.width = attrs.get('width', "")
             self.height = attrs.get('height', "")
             self.background_color = attrs.get('background-color', "")
-            self.atrib = {'etiqueta': name, 'width': self.width, 'height': self.height, 'background-color': self.background_color}
+            self.atrib = {'etiqueta': name, 'width': self.width,
+                          'height': self.height,
+                          'background-color': self.background_color}
             self.etiq.append(self.atrib)
         elif name == 'region':
             self.id = attrs.get('id', "")
@@ -36,25 +38,31 @@ class SmallSMILHandler(ContentHandler):
             self.bottom = attrs.get('bottom', "")
             self.left = attrs.get('left', "")
             self.right = attrs.get('right', "")
-            self.atrib = {'etiqueta': name, 'id': self.id, 'top': self.top, 'bottom': self.bottom, 'left': self.left, 'right': self.right}
+            self.atrib = {'etiqueta': name, 'id': self.id,
+                          'top': self.top, 'bottom': self.bottom,
+                          'left': self.left, 'right': self.right}
             self.etiq.append(self.atrib)
         elif name == 'img':
             self.src = attrs.get('src', "")
             self.region = attrs.get('region', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            self.atrib = {'etiqueta': name, 'src': self.src, 'region': self.region, 'begin': self.begin, 'dur': self.dur}
+            self.atrib = {'etiqueta': name, 'src': self.src,
+                          'region': self.region, 'begin': self.begin,
+                          'dur': self.dur}
             self.etiq.append(self.atrib)
         elif name == 'audio':
             self.src = attrs.get('src', "")
             self.begin = attrs.get('begin', "")
             self.dur = attrs.get('dur', "")
-            self.atrib = {'etiqueta': name, 'src': self.src, 'begin': self.begin, 'dur': self.dur}
+            self.atrib = {'etiqueta': name, 'src': self.src,
+                          'begin': self.begin, 'dur': self.dur}
             self.etiq.append(self.atrib)
         elif name == 'textstream':
             self.src = attrs.get('src', "")
             self.region = attrs.get('region', "")
-            self.atrib = {'etiqueta': name, 'src': self.src, 'region': self.region}
+            self.atrib = {'etiqueta': name, 'src': self.src,
+                          'region': self.region}
             self.etiq.append(self.atrib)
 
     def get_tags(self):
